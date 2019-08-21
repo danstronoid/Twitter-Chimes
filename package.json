@@ -1,0 +1,22 @@
+{
+  "name": "twind-chimes",
+  "version": "1.0.0",
+  "description": "My CS50 Final Project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danstronoid/CS50-Final-Project.git"
+  },
+  "author": "Daniel Schwartz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danstronoid/CS50-Final-Project/issues"
+  },
+  "homepage": "https://github.com/danstronoid/CS50-Final-Project#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

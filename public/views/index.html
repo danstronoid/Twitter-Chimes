@@ -12,13 +12,20 @@
         <!-- meta tag for proper scaling 
         <meta name="viewport" content="width=device-width, initial-scale-1">-->
 
-        <title>Twitter Chimes</title>
+        <title>Twind Chimes</title>
     </head>
 
     <body>
 
-    <h1>Twitter Chimes</h1>
-    <button type="button" id="playSound" class="btn btn-primary">Play Sound</button>
+        <h1>Twind Chimes</h1>
+        <form method="GET", action="/search">
+            <div class="form-group">
+                <input type="text" class="form-control" name="q" id="q" placeholder="Enter search keywords">
+            </div>
+            <button type="submit" id="searchBtn" class="btn btn-primary">Search</button>
+        </form>
+
+        <button type="submit" id="playSound" class="btn btn-primary">Play Sound</button>
     </body>
-    <script src="audio.js"> </script>
+    <script src="/static/audio.js"> </script>
 </html>
