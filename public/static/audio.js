@@ -1,4 +1,3 @@
-
 const AudioContext = window.AudioContext || window.webkitAudioContext;
 const audioCtx = new AudioContext();
 
@@ -11,6 +10,10 @@ const audioCtx = new AudioContext();
 // with two decimal places of precision
 function getRndPan(){
     return (Math.floor(Math.random() * 200) + 1) / 100 - 1;
+};
+
+function getRndFreq(){
+    
 };
 
 // this function creates a sine oscillator
@@ -45,11 +48,12 @@ function playChime(frequency=440, attackTime=0.05, releaseTime = 0.2){
 document.querySelector('#playSound').addEventListener('click', function() {
     audioCtx.resume().then(() => {
         console.log('Playback resumed successfully');
-
         playChime();
 
-        });
+    });
 });
+
+
 
 
 
