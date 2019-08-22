@@ -18,6 +18,8 @@
     <body>
 
         <h1>Twind Chimes</h1>
+        <br>
+
         <form method="GET", action="/search">
             <div class="form-group">
                 <input type="text" class="form-control" name="q" id="q" placeholder="Enter search keywords">
@@ -25,7 +27,16 @@
             <button type="submit" id="searchBtn" class="btn btn-primary">Search</button>
         </form>
 
+        <br>
+
+        <form method="GET", action="/stop">
+            <button type="submit" id="stop" class="btn btn-primary">Stop</button>
+        </form>
+
+        <br>
+
         <button type="submit" id="playSound" class="btn btn-primary">Play Sound</button>
+        
     </body>
     <script src="/static/audio.js"> </script>
 </html>

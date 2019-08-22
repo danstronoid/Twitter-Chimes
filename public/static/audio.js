@@ -52,9 +52,6 @@ document.querySelector('#playSound').addEventListener('click', function() {
 });
 
 
-//module.export.playChime = playChime;
-
-
 
 
 
