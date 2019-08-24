@@ -27,10 +27,16 @@
         <div class="input-group justify-content-center">
             <button type="submit" id="playSound" class="btn btn-primary">Test Sound</button>
         </div>
+
+        <div class="input-group">
+            <span>Volume: </span>
+            <input type="range" min="0.0" max="1.0" step="0.01" value="1.0" name="volume" id="volumeControl">
+        </div>
         
     </body>
 
     <!-- audio implementation -->
+    <script src="/static/audio-math.js"> </script>
     <script src="/static/audio.js"> </script>
     
     <!-- client side communication with io server -->

@@ -22,7 +22,7 @@ app.set('view engine', 'nunjucks');
 nunjucks.configure('views', {
     autoescape: true,
     express: app
-});
+})
 
 //app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -30,37 +30,37 @@ app.use(express.urlencoded({ extended: false }));
 // the home directory
 app.get('/', (req, res) => {
     res.render('index.html');
-});
+})
 
 // log whenver a user connects or disconnects
 io.on('connection', function(socket){
     console.log('a user connected');
     socket.on('disconnect', function() {
         console.log('user disconnected');
-    });
-});
+    })
+})
 
 // start the twitter stream based on search
 app.get('/search', (req, res) => {
-    var searchKeywords = req.query['q'];
+    let searchKeywords = req.query['q'];
     console.log('q: ' + searchKeywords);
-    stream = client.stream('statuses/filter', {track: 'potato'});
+    stream = client.stream('statuses/filter', {track: searchKeywords});
     stream.on('data', function(event) {
-        console.log(event && event.text);
-        io.emit('tweet', event.text);
-    });
+        //console.log(event && event.text);
+        io.volatile.emit('tweet', event.text); 
+    })
     stream.on('error', function(error) {
         throw error;
-    });
+    })
     res.render('stream.html', {searchKeywords: searchKeywords});
-});
+})
 
 // stop the twitter stream and return to index
 app.get('/stop', (req, res) => {
     stream.removeAllListeners();
     res.redirect('/');
-});
+})
 
 server.listen(port, () => {
     console.log(`Listening on port ${port}...`);
-});
+})
