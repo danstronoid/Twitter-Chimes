@@ -1,3 +1,6 @@
+"use strict";
+
+//create socket object
 const socket = io();
 
 // set the max allowed length of tweet
