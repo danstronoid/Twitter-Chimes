@@ -1,20 +1,14 @@
 {% extends 'base.html' %}
 
-{% block body %}
-
-    <h1 class="text-center">Twind Chimes</h1>
-    
-    <br>
+{% block button %}
 
     <form method="GET", action="/stop">
-        <div class="form-group row justify-content-center">
-            <div class="col-4">
-                <input type="text" class="form-control" name="q" id="q" placeholder="{{ searchKeywords }}" readonly>
-            </div>
-            <div class="col-auto">
-                <button type="submit" id="stopBtn" class="btn btn-primary">Stop</button>
-            </div>
-        </div>
+        <button type="submit" id="stopBtn" class="btn btn-primary" autofocus>Stop Stream</button> 
     </form>
-        
+
+{% endblock %}
+
+
+{% block script %}
+    <script src="/static/audio-stream.js"></script>
 {% endblock %}

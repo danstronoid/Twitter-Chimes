@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <!-- CCS stylesheet -->
+        <link rel="stylesheet" href="/static/styles.css">
+
+        <!-- CSS for custom range slider, from Customized Range Slider by Chris Coyier -->
+        <link rel="stylesheet" href="/static/slider.css">
+        
         <!-- bootstrap css styles -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
@@ -14,24 +20,46 @@
         
         <!-- socket.io javascript -->
         <script src="/socket.io/socket.io.js"></script>
+        <script>const socket = io(); </script>
 
-        <title>Twind Chimes</title>
+        <title>Twitter Chimes</title>
     </head>
 
     <body>
 
+        <div class="container">
+            <br>
+            <div class="row align-items-start justify-content-center">
+                <h1 class="text-center">Twitter Chimes</h1>
+            </div>
+            <br>
+            <div class="row align-items-center justify-content-center">
+                <div class="col-10">
+                    <div class="jumbotron">
+                        <h1 class="display-2">{{ keyword }}</h1>
+                        <p class="lead">This is the keyword for the current twitter stream.</p>
+                        <hr class="my-4">
+                        {% block button %}{% endblock %}
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row justify-content-center">
+                <button type="submit" id="playSound" class="btn btn-primary">Test Sound</button>       
+            </div>
+            <br>
+            <div class="row align-items-end justify-content-center">
+                <div class="col-auto">
+                    <span class="input-group-text">Volume: </span>
+                </div>
+                <div class="col-4">
+                    <input type="range" min="0.0" max="1.0" step="0.01" value="1.0" name="volume" id="volumeControl">
+                </div>
+            </div>
+            <br>
+        </div>
+
         {% block body %}{% endblock %}
-
-        <br>
-
-        <div class="input-group justify-content-center">
-            <button type="submit" id="playSound" class="btn btn-primary">Test Sound</button>
-        </div>
-
-        <div class="input-group">
-            <span>Volume: </span>
-            <input type="range" min="0.0" max="1.0" step="0.01" value="1.0" name="volume" id="volumeControl">
-        </div>
         
     </body>
 
@@ -39,7 +67,6 @@
     <script src="/static/audio-math.js"> </script>
     <script src="/static/audio.js"> </script>
     
-    <!-- client side communication with io server -->
-    <script src="/static/clientio.js"> </script>
+    {% block script %}{% endblock %}
 
 </html>

@@ -9,11 +9,6 @@ const io = require('socket.io')(server);
 const path  = require('path');
 const port = process.env.PORT || 3000;
 
-// create twiiter object
-const Twitter = require('twitter');
-const client = require('./tclient.js');
-var stream = {};
-
 // configure path for static and views
 app.use('/static', express.static(path.join(__dirname, '/public')));
 app.use(express.static(path.join(__dirname, '/public')));
@@ -24,12 +19,43 @@ nunjucks.configure('views', {
     express: app
 })
 
-//app.use(express.json());
+// use urlencoded
 app.use(express.urlencoded({ extended: false }));
+
+
+// create and configure twitter stream
+const Stream = require('twitter-lite/stream');
+const client = require('./twitter-api.js');
+const waitTime = 60 * 1000; //60s
+var keyword = 'Wind';
+var stream;
+
+function createStream() {
+    stream = client.stream('statuses/filter', {track: keyword});
+    console.log("new stream");
+    stream.on('data', function(event) {
+        //console.log(event && event.text);
+        io.volatile.emit('tweet', event.text); 
+    });
+    stream.on('error', function(error) {
+        //throw error;
+        console.log(error);
+        return 1;
+    });
+    setTimeout(() => {
+        process.nextTick(() => { 
+            stream.destroy();
+            console.log("stream destroyed");
+        });
+        setTimeout(() => createStream(), waitTime);
+    }, waitTime)
+}
+
+createStream();
 
 // the home directory
 app.get('/', (req, res) => {
-    res.render('index.html');
+    res.render('index.html', {keyword: keyword});
 })
 
 // log whenver a user connects or disconnects
@@ -41,24 +67,13 @@ io.on('connection', function(socket){
 })
 
 // start the twitter stream based on search
-app.get('/search', (req, res) => {
-    let searchKeywords = req.query['q'];
-    console.log('q: ' + searchKeywords);
-    stream = client.stream('statuses/filter', {track: searchKeywords});
-    stream.on('data', function(event) {
-        //console.log(event && event.text);
-        io.volatile.emit('tweet', event.text); 
-    })
-    stream.on('error', function(error) {
-        throw error;
-    })
-    res.render('stream.html', {searchKeywords: searchKeywords});
+app.get('/stream', (req, res) => {
+    res.render('stream.html', {keyword: keyword});
 })
 
 // stop the twitter stream and return to index
 app.get('/stop', (req, res) => {
-    stream.removeAllListeners();
-    res.redirect('/');
+    process.nextTick(() => res.redirect('/'));
 })
 
 server.listen(port, () => {
