@@ -22,35 +22,32 @@ nunjucks.configure('views', {
 // use urlencoded
 app.use(express.urlencoded({ extended: false }));
 
-
-// create and configure twitter stream
-const Stream = require('twitter-lite/stream');
 const client = require('./twitter-api.js');
-const waitTime = 60 * 1000; //60s
-var keyword = 'Wind';
-var stream;
+const Stream = require('twitter-lite/stream');
+// a word for twitter to track
+let keyword = 'wind';
 
+// create a new twitter stream
 function createStream() {
-    stream = client.stream('statuses/filter', {track: keyword});
+    // create a new stream 
+    let stream = client.stream('statuses/filter', {track: keyword});
     console.log("new stream");
-    stream.on('data', function(event) {
-        //console.log(event && event.text);
-        io.volatile.emit('tweet', event.text); 
+
+    // emit the data from the stream
+    stream.on('data', data => {
+        //console.log(data && data.text);
+        io.volatile.emit('tweet', data.text);
     });
-    stream.on('error', function(error) {
-        //throw error;
+
+    // if an error occurs, destroy the stream
+    stream.on('error', error => {
         console.log(error);
-        return 1;
-    });
-    setTimeout(() => {
         process.nextTick(() => { 
             stream.destroy();
             console.log("stream destroyed");
         });
-        setTimeout(() => createStream(), waitTime);
-    }, waitTime)
+    });
 }
-
 createStream();
 
 // the home directory

@@ -3,10 +3,10 @@
     "configurations": [
         
         {
-            "name": "Launch base.html",
+            "name": "Launch app",
             "type": "chrome",
             "request": "launch",
-            "file": "${workspaceFolder}/views/base.html"
+            "file": "${workspaceFolder}/app.js"
         },
     ]
 }
