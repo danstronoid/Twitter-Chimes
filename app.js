@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: false }));
 const client = require('./twitter-api.js');
 const Stream = require('twitter-lite/stream');
 // a word for twitter to track
-let keyword = 'wind';
+let keyword = 'Wind';
 
 // create a new twitter stream
 function createStream() {
@@ -36,7 +36,7 @@ function createStream() {
     // emit the data from the stream
     stream.on('data', data => {
         //console.log(data && data.text);
-        io.volatile.emit('tweet', data.text);
+        io.volatile.emit('tweet', data.text, data.id_str);
     });
 
     // if an error occurs, destroy the stream
