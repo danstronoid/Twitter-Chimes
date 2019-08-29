@@ -50,11 +50,6 @@ function createStream() {
 }
 createStream();
 
-// the home directory
-app.get('/', (req, res) => {
-    res.render('index.html', {keyword: keyword});
-})
-
 // log whenver a user connects or disconnects
 io.on('connection', function(socket){
     console.log('a user connected');
@@ -63,9 +58,16 @@ io.on('connection', function(socket){
     })
 })
 
+// the home directory
+app.get('/', (req, res) => {
+    let phrase = "Start the stream..."
+    res.render('index.html', {keyword: keyword, phrase: phrase});
+})
+
 // start the twitter stream based on search
 app.get('/stream', (req, res) => {
-    res.render('stream.html', {keyword: keyword});
+    let phrase = "Listen to the breeze...";
+    res.render('stream.html', {keyword: keyword, phrase: phrase});
 })
 
 // stop the twitter stream and return to index

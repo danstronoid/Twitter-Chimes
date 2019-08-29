@@ -22,23 +22,43 @@
         <script src="/socket.io/socket.io.js"></script>
         <script>const socket = io(); </script>
 
+        <!-- twitter widget javascript -->
+        <script>window.twttr = (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0],
+                t = window.twttr || {};
+            if (d.getElementById(id)) return t;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+            
+            t._e = [];
+            t.ready = function(f) {
+                t._e.push(f);
+            };
+            
+            return t;
+            }(document, "script", "twitter-wjs"));
+        </script>
+
         <title>Twitter Chimes</title>
     </head>
 
     <body>
 
-        <div class="container">
+        <div class="container-fluid">
             <br>
             <div class="row align-items-start justify-content-center">
-                <h1 class="display-2 text-center" id="banner" >Twitter Chimes</h1>
+                <h1 class="display-3 text-center" id="banner" >Twitter Chimes</h1>
             </div>
             <br>
-            <div class="row align-items-center justify-content-center">
-                <div class="col-10">
+            <div class="row align-items-start justify-content-center">
+                    
+                <div class="col-md-8">
                     <div class="jumbotron bg-light text-dark">
-
+                        
                         <h1 class="display-4">{{ keyword }}</h1>
-                        <p class="lead">This is the keyword for the current twitter stream.</p>
+                        <p class="lead">{{ phrase }}</p>
                         <hr class="my-4">
                         <br>
                         <div class="row align-items-center justify-content-center">
@@ -62,36 +82,36 @@
                             </div>
                             <br>
                             <div class="row align-items-center justify-content-center">
-                                <div class="col-1">
+                                <div class="col-xl-1">
                                     <span>Volume: </span>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-xl-6">
                                     <input type="range" min="0.0" max="1.0" step="0.01" value="1.0" name="volume" id="volumeControl">
                                 </div>
                             </div>
             
                             <div class="row align-items-center justify-content-center">
-                                <div class="col-1">
+                                <div class="col-xl-1">
                                     <span>Reverb: </span>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-xl-6">
                                     <input type="range" min="0.0" max="1.0" step="0.01" value="0.25" name="reverb" id="reverbControl">
                                 </div>
                             </div>
             
                             <div class="row align-items-center justify-content-center">
-                                <div class="col-1">
+                                <div class="col-xl-1">
                                     <span>FM: </span>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-xl-6">
                                     <input type="range" min="0.0" max="4.0" step="0.04" value="1.0" name="fm" id="fmControl">
                                 </div>
                             </div>
                             <br>
                             <div class="row justify-content-center">
-                                <div class = "input-group col-5">
+                                <div class = "input-group col-xl-7">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" for="oscType">Osc Type:</label>
+                                        <label class="input-group-text" for="oscType">Osc Type</label>
                                     </div>
                                     <select class="custom-select" id="oscType">
                                         <option value="sine" selected>Sine</option>
@@ -103,7 +123,7 @@
                             </div>
                             <br>
                             <div class="row justify-content-center">
-                                <div class = "input-group col-5">
+                                <div class = "input-group col-xl-7">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="tonality">Tonality:</label>
                                     </div>
@@ -124,6 +144,8 @@
         </div>
 
         {% block body %}{% endblock %}
+
+        <br>
         
     </body>
 
