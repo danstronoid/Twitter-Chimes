@@ -7,3 +7,7 @@ body {
     font-weight: bold;
 }
 
+#info {
+    color: white;
+    text-align: center;
+}

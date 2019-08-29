@@ -25,13 +25,18 @@ app.use(express.urlencoded({ extended: false }));
 const client = require('./twitter-api.js');
 const Stream = require('twitter-lite/stream');
 // a word for twitter to track
-let keyword = 'Wind';
+var keyword = 'Wind';
+var alive = true;
 
 // create a new twitter stream
 function createStream() {
     // create a new stream 
     let stream = client.stream('statuses/filter', {track: keyword});
-    console.log("new stream");
+
+    // test new stream
+    stream.on('start', () => {
+        console.log("new stream");
+    })
 
     // emit the data from the stream
     stream.on('data', data => {
@@ -41,14 +46,31 @@ function createStream() {
 
     // if an error occurs, destroy the stream
     stream.on('error', error => {
-        console.log(error);
+        console.error(error);
         process.nextTick(() => { 
             stream.destroy();
+            alive = false;
             console.log("stream destroyed");
         });
     });
+
+    // if the stream ends, attempt to restart the stream
+    stream.on('end', () => {
+        console.log("end");
+        createStream();
+    })
 }
 createStream();
+
+// error-handler middleware for a stream error
+app.use(function streamError (req, res, next) {
+    if (!alive) {
+        console.error("dead stream");
+        res.status(500).render('error.html');
+    } else {
+        next();
+    }
+})
 
 // log whenver a user connects or disconnects
 io.on('connection', function(socket){

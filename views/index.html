@@ -3,7 +3,15 @@
 {% block button %}
 
     <form method="GET", action="/stream">
-        <button type="submit" id="streamBtn" class="btn btn-primary" autofocus>Start Stream</button>
+        <button type="submit" id="streamBtn" class="btn btn-primary btn-lg" autofocus>Start</button>
     </form>
+
+{% endblock %}
+
+{% block button2 %}
+
+<button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#tweetStream" disabled>
+    Tweets
+</button>
 
 {% endblock %}

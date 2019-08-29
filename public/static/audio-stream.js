@@ -21,26 +21,21 @@ socket.on('tweet', function(text, id) {
     let releaseTime = scale * 1;
     playChime(frequency, modDepth, amp, attackTime, releaseTime);
 
-    /* let childCount = document.getElementById("#tweetbox").childElementCount;
+    let childCount = document.getElementById("#tweetbox").childElementCount;
     if (childCount > 4) {
         let tweetBox = document.getElementById("#tweetbox");
         let firstChild = document.getElementById("#tweetbox").firstElementChild;
         tweetBox.removeChild(firstChild);
-    } */
+    } 
     
-    document.getElementById("#tweetbox").innerHTML = "";
-    console.log(id);
+    //document.getElementById("#tweetbox").innerHTML = "";
+    //console.log(id);
     twttr.widgets.createTweet(
         id,
-        document.getElementById("#tweetbox"),
-        {
+        document.getElementById("#tweetbox"), {
             align: 'center',
             cards: 'hidden',
             theme: 'light'
-        })
-        .then(() => {
-            console.log(childCount)
-        });
-    
+    })
 })
 

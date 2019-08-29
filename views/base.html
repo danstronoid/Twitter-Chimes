@@ -52,29 +52,29 @@
                 <h1 class="display-3 text-center" id="banner" >Twitter Chimes</h1>
             </div>
             <br>
-            <div class="row align-items-start justify-content-center">
-                    
-                <div class="col-md-8">
+            <div class="row align-items-start justify-content-center">  
+                <div class="container col-xl-8">
                     <div class="jumbotron bg-light text-dark">
-                        
-                        <h1 class="display-4">{{ keyword }}</h1>
-                        <p class="lead">{{ phrase }}</p>
+                        <div class="row align-items-center justify-content-center">
+                            <div class="col-lg-4 text-center">
+                                <h1 class="display-4">{{ keyword }}</h1>
+                                <p class="lead">{{ phrase }}</p>
+                            </div>
+                            <div class="col-lg-4 text-center">
+                                {% block button %}{% endblock %}
+                            </div>
+                        </div>
                         <hr class="my-4">
                         <br>
                         <div class="row align-items-center justify-content-center">
-                            <div class="col-5 text-center">
-                            {% block button %}{% endblock %}
-                            </div>
-                            <div class="col-auto"></div>
-                            <div class="col-5 text-center">
-                                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#synthControls">
-                                    Synth Controls
-                                </button>
+                            <div class="btn-group btn-group-toggle col-xl-4 text-center" role="group" data-toggle="button">
+                                {% block button2 %}{% endblock %}
+                                <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#synthControls">
+                                    Controls
+                                </button> 
                             </div>
                         </div>
-
                         <br>
-
                         <div class="collapse" id="synthControls">
                             <hr class="my-4">
                             <div class="row justify-content-center">
@@ -85,7 +85,7 @@
                                 <div class="col-xl-1">
                                     <span>Volume: </span>
                                 </div>
-                                <div class="col-xl-6">
+                                <div class="col-xl-7">
                                     <input type="range" min="0.0" max="1.0" step="0.01" value="1.0" name="volume" id="volumeControl">
                                 </div>
                             </div>
@@ -94,7 +94,7 @@
                                 <div class="col-xl-1">
                                     <span>Reverb: </span>
                                 </div>
-                                <div class="col-xl-6">
+                                <div class="col-xl-7">
                                     <input type="range" min="0.0" max="1.0" step="0.01" value="0.25" name="reverb" id="reverbControl">
                                 </div>
                             </div>
@@ -103,13 +103,13 @@
                                 <div class="col-xl-1">
                                     <span>FM: </span>
                                 </div>
-                                <div class="col-xl-6">
+                                <div class="col-xl-7">
                                     <input type="range" min="0.0" max="4.0" step="0.04" value="1.0" name="fm" id="fmControl">
                                 </div>
                             </div>
                             <br>
                             <div class="row justify-content-center">
-                                <div class = "input-group col-xl-7">
+                                <div class = "input-group col-xl-8">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="oscType">Osc Type</label>
                                     </div>
@@ -123,7 +123,7 @@
                             </div>
                             <br>
                             <div class="row justify-content-center">
-                                <div class = "input-group col-xl-7">
+                                <div class = "input-group col-xl-8">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="tonality">Tonality:</label>
                                     </div>
@@ -134,19 +134,22 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="collapse" id="tweetStream">
+                            {% block body %}{% endblock %}
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <br>
-           
+            <br>   
         </div>
-
-        {% block body %}{% endblock %}
-
-        <br>
-        
+        <div class="container">
+            <div class="row align-items-end justify-content-center">
+                <div class="col-sm-3">
+                    <footer id="info">Powered by Twitter Streaming API.</footer>
+                </div> 
+            </div>
+        </div>
+    
     </body>
 
     <!-- audio implementation -->

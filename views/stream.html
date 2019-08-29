@@ -3,14 +3,24 @@
 {% block button %}
 
     <form method="GET", action="/stop">
-        <button type="submit" id="stopBtn" class="btn btn-primary" autofocus>Stop Stream</button> 
+        <button type="submit" id="stopBtn" class="btn btn-primary btn-lg" autofocus>Stop</button> 
     </form>
+
+{% endblock %}
+
+{% block button2 %}
+
+<button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#tweetStream">
+    Tweets
+</button>
 
 {% endblock %}
 
 {% block body %}
 
-<div class="container col-md-4 text-center" style="overflow-y: auto; height: 300px;" id="#tweetbox"></div>
+<hr class="my-4">
+                            
+<div class="container col-lg-6 justify-content-center" style="overflow-y: auto; height: 300px;" id="#tweetbox"></div>
 
 {% endblock %}
 

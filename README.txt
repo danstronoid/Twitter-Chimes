@@ -1,9 +1,0 @@
-My CS50 Final Project
-
-TWITTER WINDCHIMES
-
-Create a basic page where users can enter a hash or search
-
-Get a twitter stream based on the user search
-
-Synthesize and play a pitch for each tweet in the stream
