@@ -15,14 +15,14 @@ var oscType = "sine";
 // setup reverb, volume, and test button
 function setup() {
     // load impulse response
-    fetch('/Mechanics_IR.wav')
+    fetch('/wav/Mechanics_IR.wav')
         .then(response => {
             return response.arrayBuffer();  
         }).then(buffer => {
             audioCtx.decodeAudioData(buffer, decoded => {
                 reverb.buffer = decoded; 
-            })
-        })
+            });
+        });
 
     // button to test playback
     document.querySelector('#playSound').addEventListener('click', function() {
@@ -30,8 +30,8 @@ function setup() {
             console.log('Playback resumed successfully');
             let frequency = getRndFreq();
             playChime(frequency);
-        })
-    })
+        });
+    });
 
     // create a master volume control
     let volumeControl = document.querySelector("#volumeControl");

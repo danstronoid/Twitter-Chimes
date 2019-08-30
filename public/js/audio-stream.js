@@ -36,6 +36,6 @@ socket.on('tweet', function(text, id) {
             align: 'center',
             cards: 'hidden',
             theme: 'light'
-    })
-})
+    });
+});
 
