@@ -11,10 +11,6 @@ function createStream(io) {
 
     // create a new stream 
     let stream = client.stream('statuses/filter', {track: keyword});
-    setTimeout(() => {
-        alive = false;
-        console.log('dead');
-    }, 10000);
 
     // test new stream
     stream.on('start', () => {
