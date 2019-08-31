@@ -5,7 +5,7 @@ const maxLen = 150;
 
 // listen for tweet emits
 socket.on('tweet', function(text, id) {
-    console.log(text);
+    //console.log(text);
 
     // create a linear scale based on tweet length
     let tweetLen = text.length;
@@ -21,6 +21,7 @@ socket.on('tweet', function(text, id) {
     let releaseTime = scale * 1;
     playChime(frequency, modDepth, amp, attackTime, releaseTime);
 
+    // If there are more than 5 tweets in the tweetbox, delete the oldest one
     let childCount = document.getElementById("#tweetbox").childElementCount;
     if (childCount > 4) {
         let tweetBox = document.getElementById("#tweetbox");

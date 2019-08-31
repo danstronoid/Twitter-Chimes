@@ -1,4 +1,5 @@
-TWITTER WINDCHIMES - CS50x Final Project
+# TWITTER WINDCHIMES 
+*CS50x Final Project*
 by Daniel Schwartz
 
 Twitter windchimes takes an incoming Twitter stream and uses the data from the stream to create sound in a musical context, much like a traditional set of windchimes.  The idea is to create an audible and pleasant representation of the stream data.  In this case I'm using Twitter as the source of the stream, but any real-time stream data could be used.

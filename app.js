@@ -17,20 +17,20 @@ nunjucks.configure('views', {
     express: app
 });
 
-// configure path for static and controllers
+// configure path for static, middleware, and controllers
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(require('./middleware/error-handler.js'));
 app.use(require('./controllers/users.js'));
 app.use(express.urlencoded({ extended: false }));
 
 // create the twitter stream
-const twitterStream = require('./models/twitter-stream.js');
-twitterStream.createStream(io);
+const twitterstream = require('./models/twitter-stream.js');
+twitterstream.createStream(io);
 
 // log whenver a user connects or disconnects
-io.on('connection', function(socket){
+io.on('connection', (socket) => {
     console.log('a user connected');
-    socket.on('disconnect', function() {
+    socket.on('disconnect', () => {
         console.log('user disconnected');
     });
 });
