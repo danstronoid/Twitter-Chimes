@@ -9,3 +9,5 @@ The stream is created using Twitter's standard streaming API and the 'twitter-li
 On the client side, a frequency-modulated synthesizer is created using the Web Audio API.  Upon receiving a stream event, the playback function is called utilizing some of the data from the tweet to control parameters of the synthesizer.  Some of the parameters are randomized to create a more interesting and musical playback.  It is worth noting that the playback function creates a new oscillator every time it is called, which avoids running into a limit on the number of simultaneous voices.  The user is provided with several controls to alter the sound of the synth, including volume, reverb amount, modulation depth, oscillator wave-type, and musical tonality.  
 
 The user is also able to view the incoming tweets using Twitter's embedded widget.  The number of tweets shown at a given time is limited.  This could alternatively be implemented using an embedded timeline which would have to be curated by an account.
+
+Check it out: https://twind-chimes.herokuapp.com/
