@@ -1,6 +1,9 @@
 {
   "name": "twind-chimes",
   "version": "1.0.0",
+  "engines": {
+    "node": "10.x"
+  },
   "description": "My CS50 Final Project",
   "main": "app.js",
   "scripts": {
@@ -23,8 +26,6 @@
     "socket.io": "^2.2.0",
     "twitter": "^1.7.1",
     "twitter-lite": "^0.9.4"
-  },
-  "engines": {
-    "node": "10.16.3"
   }
+  
 }
