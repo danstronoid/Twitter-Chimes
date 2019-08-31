@@ -1,8 +1,8 @@
-# TWITTER WINDCHIMES 
+# TWITTER CHIMES 
 *CS50x Final Project*
 by Daniel Schwartz
 
-Twitter windchimes takes an incoming Twitter stream and uses the data from the stream to create sound in a musical context, much like a traditional set of windchimes.  The idea is to create an audible and pleasant representation of the stream data.  In this case I'm using Twitter as the source of the stream, but any real-time stream data could be used.
+Twitter chimes takes an incoming Twitter stream and uses the data from the stream to create sound in a musical context, much like a traditional set of windchimes.  The idea is to create an audible and pleasant representation of the stream data.  In this case I'm using Twitter as the source of the stream, but any real-time stream data could be used.
 
 The stream is created using Twitter's standard streaming API and the 'twitter-lite' package.  The keyword "wind" is used to filter the stream and track any mentions of the word.  Using 'socket.io' (which uses a combination of long polling and web socketing), the stream is then distributed to the client.  A server application, implemented using express and node.js, handles creating the stream, initializing the socket, and rendering templates.
 
