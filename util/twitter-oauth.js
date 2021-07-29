@@ -1,4 +1,4 @@
-const Twitter = require('twitter-lite/twitter');
+const Twitter = require('twitter-lite/dist/twitter');
 
 // use environ variables for security
 let client = new Twitter({

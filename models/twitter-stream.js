@@ -1,5 +1,5 @@
 const client = require('../util/twitter-oauth.js');
-const stream = require('twitter-lite/stream');
+const stream = require('twitter-lite/dist/stream');
 
 // keep track of server status
 var alive = true;
